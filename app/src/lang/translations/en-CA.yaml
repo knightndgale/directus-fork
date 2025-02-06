@@ -294,6 +294,7 @@ label_import: Import
 format: Format
 last_page: Last Page
 last_access: Last Access
+user_id: User Id
 fill_template: Fill with Template Value
 a_unique_table_name: A unique table name...
 a_unique_column_name: A unique column name...

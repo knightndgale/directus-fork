@@ -57,12 +57,8 @@ const errorFormatted = computed(() => {
 
 async function onSubmit() {
 	// Simple RegEx, not for validation, but to prevent unnecessary login requests when the value is clearly invalid
-	const emailRegex = /^\S+@\S+$/;
 
-	if (
-		provider.value !== 'custom' &&
-		(email.value === null || !emailRegex.test(email.value) || password.value === null)
-	) {
+	if (email.value === null || password.value === null) {
 		error.value = 'INVALID_PAYLOAD';
 		return;
 	}
@@ -105,13 +101,7 @@ async function onSubmit() {
 
 <template>
 	<form novalidate @submit.prevent="onSubmit">
-		<v-input
-			v-model="email"
-			autofocus
-			autocomplete="username"
-			type="email"
-			:placeholder="provider === 'custom' ? 'User Id' : t('email')"
-		/>
+		<v-input v-model="email" autofocus autocomplete="username" type="email" :placeholder="'User Id'" />
 		<interface-system-input-password :value="password" autocomplete="current-password" @input="password = $event" />
 
 		<transition-expand>

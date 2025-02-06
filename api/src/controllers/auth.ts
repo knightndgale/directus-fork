@@ -4,6 +4,7 @@ import type { Accountability } from '@directus/types';
 import type { Request } from 'express';
 import { Router } from 'express';
 import {
+	createCustomLocalAuthRouter,
 	createLDAPAuthRouter,
 	createLocalAuthRouter,
 	createOAuth2AuthRouter,
@@ -36,6 +37,10 @@ for (const authProvider of authProviders) {
 	switch (authProvider.driver) {
 		case 'local':
 			authRouter = createLocalAuthRouter(authProvider.name);
+			break;
+
+		case 'custom':
+			authRouter = createCustomLocalAuthRouter(authProvider.name);
 			break;
 
 		case 'oauth2':
